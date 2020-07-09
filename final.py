@@ -7,18 +7,19 @@ from wide_resnet import WideResNet
 from keras.utils.data_utils import get_file
 
 
-cascPath = ".\\pretrained_models\\haarcascade_frontalface_alt.xml" # dataset
+cascPath = "pretrained_models/haarcascade_frontalface_alt.xml" # dataset
 faceCascade = cv2.CascadeClassifier(cascPath)
 
 video_capture = cv2.VideoCapture(0) 
-ASE_PATH = ".\\pretrained_models\\haarcascade_frontalface_alt.xml"
-WRN_WEIGHTS_PATH = ".\\pretrained_models\\weights.18-4.06.hdf5"
+# ASE_PATH = ".\\pretrained_models\\haarcascade_frontalface_alt.xml"
+WRN_WEIGHTS_PATH = "pretrained_models/weights.18-4.06.hdf5"
 depth=16
 width=8
 face_size=64
 model = WideResNet(face_size, depth=depth, k=width)()
-model_dir = os.path.join(os.getcwd(), "pretrained_models").replace("//", "\\")
-fpath = get_file('weights.18-4.06.hdf5',WRN_WEIGHTS_PATH,cache_subdir=model_dir)
+# model_dir = os.path.join(os.getcwd(), "pretrained_models").replace("//", "\\")
+fpath = WRN_WEIGHTS_PATH
+# get_file('weights.18-4.06.hdf5',WRN_WEIGHTS_PATH,cache_subdir=model_dir)
 model.load_weights(fpath)
 
 
